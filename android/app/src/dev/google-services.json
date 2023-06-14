@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "646673629491",
+    "project_id": "test-pixelfield",
+    "storage_bucket": "test-pixelfield.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646673629491:android:d4013add75742de10d3e46",
+        "android_client_info": {
+          "package_name": "com.test.pixelfield.flutter.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646673629491-8d242dt6gqlct1i9n0heocrq7c2d6k5e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjsyc-IRfpzGnQPZYNzipdnwwxogAMitk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646673629491-8d242dt6gqlct1i9n0heocrq7c2d6k5e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

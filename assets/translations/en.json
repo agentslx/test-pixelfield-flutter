@@ -1,0 +1,32 @@
+{
+    "app_title": "Test PixelField Flutter",
+    "home": {
+        "title_map": "Map",
+        "title_calendar": "Calendar",
+        "title_project": "Projects"
+    },
+    "project": {
+        "status_progress": "In progress",
+        "status_completed": "Completed",
+        "search": "Search project",
+        "due": "Due: {}",
+        "due_date": "Due date",
+        "routine": "Routine",
+        "step_add_hint": "Type to add a step",
+        "steps": "Steps",
+        "no_steps": "No steps added",
+        "add_scene": "Add scene",
+        "title_hint": "Project title",
+        "cancel": "Cancel",
+        "save": "Save",
+        "launch": "Launch",
+        "routines": {
+            "none": "None",
+            "daily": "Daily",
+            "weekdays": "Every weekday (Mon-Fri)",
+            "weekly": "Weekly",
+            "monthly": "Monthly",
+            "yearly": "Yearly"
+        }
+    }
+}
