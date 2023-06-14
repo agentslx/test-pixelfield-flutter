@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test_pixelfield_flutter/config/text_styles.dart';
 import 'package:test_pixelfield_flutter/features/project/bloc/project_bloc.dart';
 import 'package:test_pixelfield_flutter/features/project/ui/widget/project_list_item.dart';
@@ -10,9 +11,9 @@ import '../../../../config/color_styles.dart';
 import '../project_routes.dart';
 
 class ListProjectFragment extends StatefulWidget {
-  final GlobalKey<NavigatorState> subNavigatorKey;
+  final GlobalKey<NavigatorState>? subNavigatorKey;
 
-  const ListProjectFragment({super.key, required this.subNavigatorKey});
+  const ListProjectFragment({super.key, this.subNavigatorKey});
 
   @override
   State<ListProjectFragment> createState() => _ListProjectFragmentState();
@@ -52,11 +53,16 @@ class _ListProjectFragmentState extends State<ListProjectFragment>
                   alignment: Alignment.centerRight,
                   child: IconButton(
                     onPressed: () {
-                      Navigator.of(widget.subNavigatorKey.currentContext!)
-                          .pushNamedAndRemoveUntil(
-                              ProjectRoutes.create,
-                              (route) =>
-                                  route.settings.name == ProjectRoutes.list);
+                      if (widget.subNavigatorKey?.currentContext != null) {
+                        Navigator.of(widget.subNavigatorKey!.currentContext!)
+                            .pushNamedAndRemoveUntil(
+                                ProjectRoutes.create,
+                                (route) =>
+                                    route.settings.name !=
+                                    ProjectRoutes.create);
+                      } else {
+                        context.pushNamed(ProjectRoutes.create);
+                      }
                     },
                     icon: const Icon(Icons.add),
                   ),
@@ -155,12 +161,20 @@ class _ListProjectFragmentState extends State<ListProjectFragment>
                   var project = state.projects[index];
                   return InkWell(
                       onTap: () {
-                        Navigator.of(widget.subNavigatorKey.currentContext!)
-                            .pushNamedAndRemoveUntil(
-                          ProjectRoutes.view,
-                          (route) => route.settings.name == ProjectRoutes.list,
-                          arguments: project,
-                        );
+                        if (widget.subNavigatorKey?.currentContext != null) {
+                          Navigator.of(widget.subNavigatorKey!.currentContext!)
+                              .pushNamedAndRemoveUntil(
+                            ProjectRoutes.view,
+                            (route) =>
+                                route.settings.name != ProjectRoutes.view,
+                            arguments: project,
+                          );
+                        } else {
+                          context.pushNamed(
+                            ProjectRoutes.view,
+                            extra: project,
+                          );
+                        }
                       },
                       child: ProjectListItem(project: project));
                 },

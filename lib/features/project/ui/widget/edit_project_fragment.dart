@@ -334,84 +334,86 @@ class _EditProjectFragmentState extends State<EditProjectFragment> {
             ],
           ),
         ),
-        bottomNavigationBar: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-            color: AppColors.darkSurface100,
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.darkSurface100,
-                      border: Border.all(
-                          color: AppColors.darkSurface200, width: 0.5),
-                    ),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(AppColors.darkSurface100),
-                        foregroundColor:
-                            MaterialStateProperty.all(AppColors.darkSurface100),
-                        overlayColor:
-                            MaterialStateProperty.all(Colors.transparent),
+        bottomNavigationBar: Container(
+          color: AppColors.darkSurface100,
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.darkSurface100,
+                        border: Border.all(
+                            color: AppColors.darkSurface200, width: 0.5),
                       ),
-                      child: Text(
-                        tr(LocaleKeys.project_cancel),
-                        style: AppTextStyles.t16(
-                            color: Colors.white, fontWeight: FontWeight.w300),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Container(
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.lightSurface400,
-                      border: Border.all(
-                          color: AppColors.darkSurface200, width: 0.5),
-                    ),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (saveEnabled) {
-                          BlocProvider.of<ProjectBloc>(context).add(AddProjects(
-                              title: _titleController.text,
-                              dueDate: selectedDueDate!,
-                              routine: selectedRoutine!,
-                              steps: steps
-                                  .map((e) => ProjectStep(
-                                      content: e, isFinished: false))
-                                  .toList(),
-                              scene: null)); // TODO select scene
-                          Navigator.pop(context);
-                        }
-                      },
-                      style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(AppColors.lightSurface400),
-                        overlayColor: MaterialStateProperty.all(
-                            AppColors.lightSurface400),
-                      ),
-                      child: Text(
-                        tr(LocaleKeys.project_save),
-                        style: AppTextStyles.t16(
-                            color: saveEnabled
-                                ? Colors.black
-                                : AppColors.lightSurface600,
-                            fontWeight: FontWeight.w300),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(AppColors.darkSurface100),
+                          foregroundColor:
+                              MaterialStateProperty.all(AppColors.darkSurface100),
+                          overlayColor:
+                              MaterialStateProperty.all(Colors.transparent),
+                        ),
+                        child: Text(
+                          tr(LocaleKeys.project_cancel),
+                          style: AppTextStyles.t16(
+                              color: Colors.white, fontWeight: FontWeight.w300),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.lightSurface400,
+                        border: Border.all(
+                            color: AppColors.darkSurface200, width: 0.5),
+                      ),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (saveEnabled) {
+                            BlocProvider.of<ProjectBloc>(context).add(AddProjects(
+                                title: _titleController.text,
+                                dueDate: selectedDueDate!,
+                                routine: selectedRoutine!,
+                                steps: steps
+                                    .map((e) => ProjectStep(
+                                        content: e, isFinished: false))
+                                    .toList(),
+                                scene: null)); // TODO select scene
+                            Navigator.of(context).pop();
+                          }
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(AppColors.lightSurface400),
+                          overlayColor: MaterialStateProperty.all(
+                              AppColors.lightSurface400),
+                        ),
+                        child: Text(
+                          tr(LocaleKeys.project_save),
+                          style: AppTextStyles.t16(
+                              color: saveEnabled
+                                  ? Colors.black
+                                  : AppColors.lightSurface600,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ));

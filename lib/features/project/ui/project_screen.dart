@@ -43,25 +43,33 @@ class _ProjectScreenState extends State<ProjectScreen> {
   }
 
   Widget _buildMobileLayout() {
-    return Navigator(
-      key: _subNavigatorKey,
-      initialRoute: ProjectRoutes.list,
-      onGenerateRoute: (settings) {
-        switch (settings.name) {
-          case ProjectRoutes.list:
-            return MaterialPageRoute(
-              builder: (context) => ListProjectFragment(
-                subNavigatorKey: _subNavigatorKey,
-              ),
-            );
-          case ProjectRoutes.create:
-            return MaterialPageRoute(
-              builder: (context) => const EditProjectFragment(),
-            );
-        }
-        return null;
-      },
+    return const ListProjectFragment(
+      subNavigatorKey: null,
     );
+    // return Navigator(
+    //   key: _subNavigatorKey,
+    //   initialRoute: ProjectRoutes.list,
+    //   onGenerateRoute: (settings) {
+    //     switch (settings.name) {
+    //       case ProjectRoutes.list:
+    //         return MaterialPageRoute(
+    //           builder: (context) => const ListProjectFragment(
+    //             subNavigatorKey: null,
+    //           ),
+    //         );
+    //       case ProjectRoutes.create:
+    //         return MaterialPageRoute(
+    //           builder: (context) => const EditProjectFragment(),
+    //         );
+    //       case ProjectRoutes.view:
+    //         return MaterialPageRoute(
+    //           builder: (context) => ViewProjectFragment(
+    //               project: settings.arguments as ProjectEntity),
+    //         );
+    //     }
+    //     return null;
+    //   },
+    // );
   }
 
   Widget _buildTabletLayout() {
